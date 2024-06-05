@@ -41,6 +41,12 @@ export const routes: Route[] = [
         element: <HomePage />,
       },
       {
+        icon: <ChatBubbleLeftIcon {...icon} />,
+        name: "chat",
+        path: "/chat",
+        element: <ChatPage />,
+      },
+      {
         icon: <TableCellsIcon {...icon} />,
         name: "users",
         path: "/users",
@@ -65,12 +71,6 @@ export const routes: Route[] = [
         name: "profile",
         path: "/profile",
         element: <ProfilePage />,
-      },
-      {
-        icon: <ChatBubbleLeftIcon {...icon} />,
-        name: "chat",
-        path: "/chat",
-        element: <ChatPage />,
       },
     ],
   },

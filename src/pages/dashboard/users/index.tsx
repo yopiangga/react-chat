@@ -6,41 +6,21 @@ import {
   Avatar,
 } from "@material-tailwind/react";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "src/context/UserContext";
-import { UserServices } from "src/services/UserServices";
 import { Button } from "@material-tailwind/react";
 import { FiTrash, FiEye } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import LoadComponent from "src/widgets/load";
 import { User } from "src/types/user";
 import { DeleteActionComponent, DetailActionComponent } from "./component";
 
 export function UsersPage() {
   const navigate = useNavigate();
-  const userServices = new UserServices();
   const { users, initUsers, deleteUser } = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(false);
 
   const [user, setUser] = useState<User>();
   const [detailModal, setDetailModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-
-  useEffect(() => {
-    if (users.length === 0) fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    const response = await userServices.getUsers();
-    const userWithImages = response.map((user: User) => ({
-      ...user,
-      avatar: `https://picsum.photos/50?random=${user.id}`,
-    }));
-    initUsers(userWithImages);
-
-    setIsLoading(false);
-  };
 
   function handleDelete(id: string) {
     deleteUser(id);
@@ -161,8 +141,6 @@ export function UsersPage() {
           </table>
         </CardBody>
       </Card>
-
-      {isLoading && <LoadComponent />}
 
       {detailModal == true ? (
         <DetailActionComponent

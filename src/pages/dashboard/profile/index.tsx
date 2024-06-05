@@ -5,8 +5,12 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { useContext } from "react";
+import { ProfileContext } from "src/context/ProfileContext";
 
 export function ProfilePage() {
+  const { profile } = useContext(ProfileContext);
+
   return (
     <div className="min-h-[calc(100vh-200px)]">
       <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl">
@@ -30,13 +34,13 @@ export function ProfilePage() {
               />
               <div>
                 <Typography variant="h5" color="blue-gray" className="mb-1">
-                  Alfian Prisma Yopiangga
+                  {profile.name}
                 </Typography>
                 <Typography
                   variant="h6"
                   className="font-normal text-blue-gray-600"
                 >
-                  developer@alfian-py.com
+                  {profile.email}
                 </Typography>
               </div>
             </div>

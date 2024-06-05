@@ -9,9 +9,11 @@ import {
 import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
 import { SidebarContext } from "src/context/SidebarContext";
+import { ProfileContext } from "src/context/ProfileContext";
 
 export function DashboardNavbar() {
   const { handleSidenav } = useContext(SidebarContext);
+  const { profile } = useContext(ProfileContext);
 
   const { fixedNavbar } = { fixedNavbar: true };
   const { pathname } = useLocation();
@@ -73,7 +75,7 @@ export function DashboardNavbar() {
               className="hidden items-center gap-1 px-4 xl:flex normal-case"
             >
               <UserCircleIcon className="h-5 w-5 text-blue-gray-500" />
-              Alfian Prisma Yopiangga
+              {profile.name}
             </Button>
             <IconButton
               variant="text"
