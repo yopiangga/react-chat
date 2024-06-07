@@ -72,7 +72,7 @@ export function DashboardLayout() {
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
-      <Sidenav brandName="Prisma Dashboard" routes={routes} />
+      <Sidenav brandName="Prisma App" routes={routes} />
       <div className="p-4 xl:ml-80">
         <DashboardNavbar />
 

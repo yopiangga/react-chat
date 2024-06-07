@@ -4,6 +4,10 @@ import { Button, IconButton, Typography } from "@material-tailwind/react";
 import { useContext } from "react";
 import { SidebarContext } from "src/context/SidebarContext";
 import { Route } from "src/routes";
+import { MessageServices } from "src/services/MessageServices";
+import { MessageContext } from "src/context/MessageContext";
+import { RxReload } from "react-icons/rx";
+import { Message } from "src/types/message";
 
 export function Sidenav({
   brandName,
@@ -12,7 +16,10 @@ export function Sidenav({
   brandName: string;
   routes: Route[];
 }) {
+  const messageServices = new MessageServices();
+
   const { openSidenav, handleSidenav } = useContext(SidebarContext);
+  const { init } = useContext(MessageContext);
 
   const { sidenavType } = {
     sidenavType: "white",
@@ -25,14 +32,22 @@ export function Sidenav({
       } bg-white shadow-sm fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100`}
     >
       <div className={`relative`}>
-        <Link to="/" className="py-6 px-8 text-center">
+        <div className="py-6 px-8 text-center flex items-center justify-center gap-2">
           <Typography
             variant="h6"
             color={sidenavType === "dark" ? "white" : "blue-gray"}
           >
             {brandName}
           </Typography>
-        </Link>
+          <button
+            type="button"
+            onClick={async () => {
+              const data = (await messageServices.resetMessage()) as Message[];
+            }}
+          >
+            <RxReload />
+          </button>
+        </div>
         <IconButton
           variant="text"
           color="black"

@@ -97,7 +97,7 @@ function BubbleChat({ message, self }: { message: Message; self: boolean }) {
     >
       <div className="flex flex-col gap-1">
         <Typography variant="small" className="font-semibold">
-          {message.username}
+          {message.username ?? "Anonymous"}
         </Typography>
         <Typography variant="small">{message.message}</Typography>
         <Typography className="text-xs">{message.timestamp}</Typography>
